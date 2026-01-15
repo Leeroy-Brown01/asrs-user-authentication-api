@@ -22,6 +22,7 @@ public class AuthService {
         if (registerRequestDto.getEmail() == null || registerRequestDto.getEmail().isBlank()) {
             throw new RuntimeException("Email is required");
         }
+
         if (registerRequestDto.getPassword() == null || registerRequestDto.getPassword().isBlank()) {
             throw new RuntimeException("Password is required");
         }
@@ -34,10 +35,18 @@ public class AuthService {
         if (userRepository.existsByEmail(email)) {
             throw new RuntimeException("Email already in use");
         }
+        if (registerRequestDto.getAddress() == null || registerRequestDto.getAddress().isBlank()) {
+            throw new RuntimeException("Address is required");
+        }
+        if (registerRequestDto.getPhoneNumber() == null || registerRequestDto.getPhoneNumber().isBlank()) {
+            throw new RuntimeException("Phone number is required");
+        }
 
         User user = new User();
         user.setEmail(email);
         user.setFullName(registerRequestDto.getFullName().trim());
+        user.setAddress(registerRequestDto.getAddress().trim());
+        user.setPhoneNumber(registerRequestDto.getPhoneNumber().trim());
         user.setPassword(registerRequestDto.getPassword()); //  hash later
         user.setRole("APPLICANT");
         user.setActive(true);
