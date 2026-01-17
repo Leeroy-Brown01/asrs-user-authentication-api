@@ -6,6 +6,7 @@ import com.brown.asrs_user_authentication_api.entity.User;
 import com.brown.asrs_user_authentication_api.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -19,11 +20,8 @@ public class UserService {
     }
 
     // GET /api/users
-    public List<UserResponseDto> getAllUsers() {
-        return userRepository.findAll()
-                .stream()
-                .map(this::toUserResponse)
-                .toList();
+    public List <User> getAllUsers() {
+        return userRepository.findAll();
     }
 
     // POST /api/users

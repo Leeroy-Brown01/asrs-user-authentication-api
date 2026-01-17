@@ -23,9 +23,9 @@ public class UserController {
         return "User registered successfully";
     }
     @GetMapping("/api/users")
-    public String getAllUsers() {
+  public String getAllUsers() {
         System.out.println("Received request to get all users");
-        return "List of all users";
+        return userService.getAllUsers().toString();
     }
 
     @PutMapping("/api/users/{id}")
@@ -35,7 +35,7 @@ public class UserController {
 
     }
     @DeleteMapping("/api/users/{id}")
-    public String deleteUser(@PathVariable @NotNull Long id, String email) {
+    public String deleteUser(@PathVariable Long id, String email) {
         System.out.println("Received request to delete user with id: " + id);
         System.out.println("Received request to delete user with email: " + email);
         return "User with id " + id + " has been deleted.";

@@ -95,4 +95,7 @@ public class AuthService {
         authResponseDto.setCreatedAt(user.getCreatedAt());
         return authResponseDto;
     }
+    public String getMe() {
+        return "Auth Service is running.";
+    }
 }
